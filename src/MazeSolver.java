@@ -5,9 +5,11 @@
  */
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class MazeSolver {
     private Maze maze;
+    private Stack<MazeCell> cellsToVisit = new Stack<MazeCell>();
 
     public MazeSolver() {
         this.maze = null;
@@ -28,9 +30,12 @@ public class MazeSolver {
      */
     public ArrayList<MazeCell> getSolution() {
         // TODO: Get the solution from the maze
+        MazeCell currentCell = maze.getStartCell();
         // Should be from start to end cells
         return null;
     }
+
+
 
     /**
      * Performs a Depth-First Search to solve the Maze
@@ -40,6 +45,30 @@ public class MazeSolver {
         // TODO: Use DFS to solve the maze
         // Explore the cells in the order: NORTH, EAST, SOUTH, WEST
         return null;
+    }
+
+    public MazeCell DFSHelper(MazeCell inputCell) {
+        ArrayList<MazeCell> cellsToAdd = new ArrayList<MazeCell>();
+
+        // abs of dif of row + abs o dif of col = 1
+        int row = inputCell.getRow();
+        int col = inputCell.getCol();
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = 1; j >= -1; j--) {
+                if (row + i >= maze.getNumRows() || row + i < 0 || col + j >= maze.getNumCols() || col + j < 0) {
+                    continue;
+                }
+                if (Math.abs(i + j) == 1 && !maze.getCell(row + i, col+ j).isExplored()) {
+                    if (maze.isValidCell(row + i, col + j)) {
+                        cellsToAdd.add(maze.getCell(row + i, col + j));
+                    }
+                }
+            }
+        }
+
+
+
     }
 
     /**

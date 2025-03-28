@@ -139,6 +139,14 @@ public class Maze {
         return this.mazeGrid[row][col];
     }
 
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
+    }
+
     /**
      * Determines if the cell is valid to visit.
      * @param row the int row val
@@ -146,7 +154,9 @@ public class Maze {
      * @return boolean true/false
      */
     public boolean isValidCell(int row, int col) {
-        // TODO: Complete this function
+        if (mazeGrid[row][col].isWall()) {
+            return false;
+        }
         return true;
     }
 }
